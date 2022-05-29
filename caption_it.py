@@ -22,11 +22,7 @@ from keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.utils import to_categorical
 import pickle
 
-# from google.colab import drive
-# drive.mount('/content/drive')
-
-# model = load_model('/content/drive/My Drive/Flickr_Data/model_weights_trained/model_9.h5')
-model = load_model('C:\\Users\\dc\\Captionify\\Model\\model_9.h5')
+model = load_model('Model\\model_9.h5')
 
 model_temp = ResNet50(weights = "imagenet", input_shape = (224, 224, 3))
 
@@ -45,17 +41,10 @@ def encode_img(img):
   feature_vector = feature_vector.reshape((1, -1))
   return feature_vector
 
-# IMG_PATH = "/content/drive/My Drive/Flickr_Data/Images/"
-IMG_PATH = "E:\\ML Projects\\Flickr_Data\\Images\\"
-enc = encode_img(IMG_PATH+"1110208841_5bb6806afe"+".jpg")
-enc.shape
-
-# with open("/content/drive/My Drive/Flickr_Data/word_to_idx.pkl", "rb") as w2i:
-with open("C:\\Users\\dc\\Captionify\\Model\\word_to_idx.pkl", "rb") as w2i:
+with open("Model\\word_to_idx.pkl", "rb") as w2i:
   word_to_idx = pickle.load(w2i)
 
-# with open("/content/drive/My Drive/Flickr_Data/idx_to_word.pkl", "rb") as i2w:
-with open("C:\\Users\\dc\\Captionify\\Model\\idx_to_word.pkl", "rb") as i2w:
+with open("Model\\idx_to_word.pkl", "rb") as i2w:
   idx_to_word = pickle.load(i2w)
 
 idx_to_word[4]
@@ -81,11 +70,7 @@ def predict_caption(photo):
     final_caption = ' '.join(final_caption)
     return final_caption
 
-predict_caption(enc)
-
 def caption_this_image(image):
   enc = encode_img(image)
   caption = predict_caption(enc)
   return caption
-
-#caption_this_image(IMG_PATH+"1110208841_5bb6806afe"+".jpg")
