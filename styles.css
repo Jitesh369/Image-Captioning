@@ -1,0 +1,14 @@
+.heading {
+  font-size: 10rem;
+  text-shadow: 1px 1px 5px black;
+}
+
+img {
+  height: 90%;
+  width: 100%;
+}
+
+.text {
+  font-size: 32px;
+  font-style: italic;
+}
